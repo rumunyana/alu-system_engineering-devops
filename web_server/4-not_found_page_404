@@ -12,7 +12,7 @@ touch /etc/nginx/html/index.html
 echo "Holberton School" > /etc/nginx/html/index.html
 
 # Create custom 404 error page
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html >/dev/null
+echo "Ceci n'est pas une page" | sudo tee /etc/ngnix/html/404.html
 
 printf %s "server {
      listen      80 default_server;
