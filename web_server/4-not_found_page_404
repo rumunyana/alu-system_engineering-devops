@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# bash script to install nginx web server & make the following configurations:
+# Configure your Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page;
 
 apt-get update
 apt-get install -y nginx
@@ -10,9 +10,20 @@ touch /etc/nginx/html/index.html
 
 
 echo "Holberton School" > /etc/nginx/html/index.html
+echo "Ceci n'est pas une page" > /etc/nginx/html/404.html
+
 
 # Create custom 404 error page
-echo "Ceci n'est pas une page" | sudo tee /etc/ngnix/html/404.html
+echo "<!DOCTYPE html>
+<html>
+<head>
+  <title>404 Not Found</title>
+</head>
+<body>
+  <h1>404 Not Found</h1>
+  <p>Ceci n'est pas une page</p>
+</body>
+</html>" | sudo tee /var/www/html/404.html >/dev/nullservice nginx restart
 
 printf %s "server {
      listen      80 default_server;
@@ -26,5 +37,4 @@ printf %s "server {
      }
 }
 " > /etc/nginx/sites-available/default
-
 service nginx restart
